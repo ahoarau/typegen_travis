@@ -1,0 +1,27 @@
+sudo: required
+dist: trusty
+language: generic
+env:
+  matrix:
+    - CI_ROS_DISTRO="jade"
+    - CI_ROS_DISTRO="indigo"
+
+
+install:
+  - rvm use 1.9.3 --install --binary --fuzzy
+  - sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu trusty main" > /etc/apt/sources.list.d/ros-latest.list'
+  - wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq -y python-rosdep python-catkin-tools
+  - sudo apt-get install -qq -y ros-$CI_ROS_DISTRO-catkin ros-$CI_ROS_DISTRO-ros
+  - sudo rosdep init
+  - rosdep update
+  - sudo apt-get install -qq -y ros-indigo-orogen
+  - ruby -e 'puts $:'
+  - source /opt/ros/$CI_ROS_DISTRO/setup.bash
+  - ruby -e 'puts $:'
+  - echo $RUBYLIB
+
+script:
+  - typegen
+  - orogen
