@@ -22,6 +22,7 @@ install:
   - source /opt/ros/$CI_ROS_DISTRO/setup.bash
   - ruby -e 'puts $:'
   - echo $RUBYLIB
+  - echo $PATH
 
 script:
   - typegen
