@@ -6,6 +6,8 @@ compiler:
 env:
   matrix:
     - CI_ROS_DISTRO="indigo"
+    - CI_ROS_DISTRO="jade" TEST=1
+    - CI_ROS_DISTRO="jade"
 matrix:
   allow_failures:
     - env: CI_ROS_DISTRO="jade" TEST=1
