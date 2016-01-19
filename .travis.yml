@@ -1,6 +1,8 @@
 sudo: required
 dist: trusty
 language: generic
+compiler:
+  - gcc
 env:
   matrix:
     - CI_ROS_DISTRO="jade"
@@ -8,7 +10,7 @@ env:
 
 install:
   - rvm use 1.9.3 --install --binary --fuzzy
-  - sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu trusty main" > /etc/apt/sources.list.d/ros-latest.list'
+  - sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -cs` main" > /etc/apt/sources.list.d/ros-latest.list'
   - wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
   - sudo apt-get update -qq
   - sudo apt-get install -qq -y python-rosdep python-catkin-tools
