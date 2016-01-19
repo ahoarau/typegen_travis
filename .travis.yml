@@ -6,8 +6,12 @@ compiler:
 env:
   matrix:
     - CI_ROS_DISTRO="jade"
+    - CI_ROS_DISTRO="jade" TEST=1
     - CI_ROS_DISTRO="indigo"
-    
+matrix:
+  allow_failures:
+    - env: CI_ROS_DISTRO="jade" TEST=1
+    - env: CI_ROS_DISTRO="jade"
 install:
 #  - rvm use 1.9.3 --install --fuzzy
   - export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
