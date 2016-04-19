@@ -15,7 +15,7 @@ install:
   - sudo apt-get install -qq -y ros-$CI_ROS_DISTRO-catkin ros-$CI_ROS_DISTRO-ros
   - sudo rosdep init
   - rosdep update
-  - sudo apt-get install -qq -y ros-indigo-orogen
+  - sudo apt-get install -qq -y ros-$CI_ROS_DISTRO-orogen
   - source /opt/ros/$CI_ROS_DISTRO/setup.bash
 
 script:
